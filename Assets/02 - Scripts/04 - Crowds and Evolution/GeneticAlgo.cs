@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GeneticAlgo : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class GeneticAlgo : MonoBehaviour
         {
             animals.Add(makeAnimal());
         }
-        customTerrain.debug.text = "N° animals: " + animals.Count.ToString();
+        customTerrain.debug.text = "Number of animals: " + animals.Count.ToString();
 
         // Update grass elements/food resources.
         updateResources();
@@ -83,6 +84,11 @@ public class GeneticAlgo : MonoBehaviour
         animal.GetComponent<Animal>().Setup(customTerrain, this);
         animal.transform.position = position;
         animal.transform.Rotate(0.0f, UnityEngine.Random.value * 360.0f, 0.0f);
+        
+        float randomScaleFactor = Random.Range(1.0f, 4.0f);
+        Vector3 newScale = new Vector3(randomScaleFactor, randomScaleFactor, randomScaleFactor);
+        animal.transform.localScale = newScale;
+        
         return animal;
     }
 
@@ -119,5 +125,4 @@ public class GeneticAlgo : MonoBehaviour
         animals.Remove(animal.transform.gameObject);
         Destroy(animal.transform.gameObject);
     }
-
 }

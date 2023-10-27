@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class InstanceBrush : Brush {
 
-    private int prefab_idx;
+    public static int prefab_idx;
 
     public override void callDraw(float x, float z) {
         if (terrain.object_prefab)

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class Animal : MonoBehaviour
 {
-
     [Header("Animal parameters")]
     public float swapRate = 0.01f;
     public float mutateRate = 0.01f;
     public float swapStrength = 10.0f;
     public float mutateStrength = 0.5f;
     public float maxAngle = 10.0f;
+    private Vector3 size;
 
     [Header("Energy parameters")]
     public float maxEnergy = 10.0f;
@@ -49,8 +49,22 @@ public class Animal : MonoBehaviour
         // Network: 1 input per receptor, 1 output per actuator.
         vision = new float[nEyes];
         networkStruct = new int[] { nEyes, 5, 1 };
-        energy = maxEnergy;
         tfm = transform;
+        
+        size = tfm.localScale; 
+        
+        float maxEnergyScaleFactor = 1.0f + (size.x - 1.0f);
+        float lossEnergyScaleFactor = 1.0f + (size.x - 1.0f);
+        float gainEnergyScaleFactor = 1.0f + (size.x - 1.0f);
+        float maxSpeedScaleFactor = size.x;
+        
+        energy = maxEnergy;
+        maxEnergy *= maxEnergyScaleFactor;
+        lossEnergy /= lossEnergyScaleFactor;
+        gainEnergy /= gainEnergyScaleFactor;
+        
+        CapsuleAutoController capsuleController = this.GetComponent<CapsuleAutoController>();
+        capsuleController.max_speed = 0.5F / maxSpeedScaleFactor;
 
         // Renderer used to update animal color.
         // It needs to be updated for more complex models.
@@ -183,5 +197,4 @@ public class Animal : MonoBehaviour
     {
         return energy / maxEnergy;
     }
-
 }

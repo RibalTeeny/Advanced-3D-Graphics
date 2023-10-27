@@ -14,6 +14,8 @@ public class CustomTerrain : MonoBehaviour {
 
     [Header("Instance brush attributes")]
     public GameObject object_prefab = null;
+    public GameObject[] vegetation;
+    
     public float min_scale = 0.8f;
     public float max_scale = 1.2f;
 
@@ -90,7 +92,7 @@ public class CustomTerrain : MonoBehaviour {
             if (current_brush)
                 do_draw_target = true;
             if (Input.GetMouseButton(0)) {
-                debug.text = "Coords: " + hit_loc.ToString();
+                //debug.text = "Coords: " + hit_loc.ToString();
                 if (current_brush)
                     current_brush.callDraw(hit_loc.x, hit_loc.z);
             }

@@ -85,10 +85,9 @@ public class FabricIKQuadruped : MonoBehaviour
             // START TODO ###################
 
             // Just a placeholder. Change with the correct transform!
-            bones[i] = transform.parent;
 
-            // bones[i] = ...
-            // startingBoneRotation[i] = ...
+            bones[i] = current;
+            startingBoneRotation[i] = current.rotation;
 
             // END TODO ###################
 
@@ -110,8 +109,11 @@ public class FabricIKQuadruped : MonoBehaviour
             {
                 // START TODO ###################
 
-                // bonesLength[i] = ...
-                // completeLength += ...
+                bonesLength[i] = (bones[i].position - bones[i + 1].position).magnitude;
+                completeLength += bonesLength[i];
+                string message = string.Format("[INFO] bonesLength: {0}, bones[i]Pos: {1}, bones[i+1]Pos: {2}, completelength: {3}",
+                    bonesLength[i], bones[i], bones[i + 1], completeLength);
+                Debug.Log(message);
 
                 // END TODO ###################
 
@@ -176,9 +178,13 @@ public class FabricIKQuadruped : MonoBehaviour
         // START TODO ###################
 
         // Change condition!
-        if (true)
+        if (completeLength * completeLength < (bonesPositions[0] - target.position).sqrMagnitude) // if quad is shorter than target distance
         {
-            // bonesPositions[i] = ...
+            for (int i = 1; i < bonesPositions.Length; i++)
+            {
+                Vector3 directionToTarget = (target.position - bonesPositions[0]).normalized;
+                bonesPositions[i] = bonesPositions[i - 1] + (directionToTarget * bonesLength[i - 1]);
+            }
 
             // END TODO ###################
 
@@ -231,11 +237,15 @@ public class FabricIKQuadruped : MonoBehaviour
                      */
 
                     // START TODO ###################
-
-                    // if...
-                    //     bonesPositions[i] = ...
-                    // else...
-                    //     bonesPositions[i] = ...
+                    //if (i == bonesPositions.Length - 1)
+                    //{
+                    //    bonesPositions[i] = target.position;
+                    //}
+                    //else
+                    //{
+                    //    Vector3 directionToTarget = (bonesPositions[i] - bonesPositions[i + 1]).normalized;
+                    //    bonesPositions[i] = bonesPositions[i + 1] + (directionToTarget * bonesLength[i]);
+                    //}
 
                     // END TODO ###################
                 }

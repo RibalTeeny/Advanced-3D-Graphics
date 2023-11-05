@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class SimpleNeuralNet
 {
-
     private List<float[,]> allWeights;
     private List<float[]> allResults;
 
@@ -51,8 +50,13 @@ public class SimpleNeuralNet
         return weights;
     }
 
+    //public float[] getOutput(float[] vision, bool smellData)
     public float[] getOutput(float[] input)
     {
+        /*float[] input = new float[vision.Length + 1];
+        vision.CopyTo(input, 0); // Copy vision data
+        input[vision.Length] = smellData ? 1.0f : 0.0f; // 1 if the animal can smell food, 0 otherwise*/
+
         for (int idxLayer = 0; idxLayer < allWeights.Count; idxLayer++)
         {
             float[,] weights = allWeights[idxLayer];
@@ -82,7 +86,7 @@ public class SimpleNeuralNet
     // Randomly change network weights
     // Swap: completely change a weight to a value between [-1;1]*swap_strength
     // Eps: change a weight by adding a value between [-1;1]*eps_strength
-    public void mutate(float swap_rate, float eps_rate, float swap_strength, float eps_strength)
+    /*public void mutate(float swap_rate, float eps_rate, float swap_strength, float eps_strength)
     {
         foreach (float[,] weights in allWeights)
         {
@@ -98,6 +102,30 @@ public class SimpleNeuralNet
                     else if (rand < swap_rate + eps_rate)
                     {
                         weights[i, j] += (2.0f * UnityEngine.Random.value - 1.0f) * eps_strength;
+                    }
+                }
+            }
+        }
+    }*/
+    
+    // Mutation based on the parent's weights
+    public void mutate()
+    {
+        float pro = UnityEngine.Random.value; // mutate probability
+        float max = (2.0f * 1 - 1.0f) * 10.0f;
+        float min = (2.0f * 0 - 1.0f) * 10.0f;
+        foreach (float[,] weights in allWeights)
+        {
+            for (int i = 0; i < weights.GetLength(0); i++)
+            {
+                for (int j = 0; j < weights.GetLength(1); j++)
+                {
+                    float rand = UnityEngine.Random.value;
+                    if (rand < pro)
+                    {
+                        // just make a little bit change based on previous weights
+                        weights[i, j] += UnityEngine.Random.Range(-1f, 1f);
+                        weights[i, j] = Mathf.Clamp(weights[i, j], min, max);
                     }
                 }
             }

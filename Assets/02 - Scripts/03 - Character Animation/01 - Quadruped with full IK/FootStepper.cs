@@ -106,7 +106,7 @@ public class FootStepper : MonoBehaviour
         Vector3 raycastOrigin = homeTransform.position + overshootVector + Vector3.up * heightOffset * movementHeight;
         bool collision = Physics.Raycast(raycastOrigin, Vector3.down, out RaycastHit hit, Mathf.Infinity, groundRaycastMask);
 
-         if (collision)
+        if (collision)
         {           
             endPos = hit.point;
             endNormal = hit.normal;

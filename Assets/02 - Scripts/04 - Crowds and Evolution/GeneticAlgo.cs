@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class GeneticAlgo : MonoBehaviour
 {
@@ -45,9 +44,18 @@ public class GeneticAlgo : MonoBehaviour
     void Update()
     {
         // Keeps animal to a minimum.
-        while (animals.Count < popSize / 2)
+        while (animals.Count < popSize / 10)
         {
             animals.Add(makeAnimal());
+            
+            /*foreach (GameObject animalObj in animals)
+            {
+                Animal animal = animalObj.GetComponent<Animal>();
+                if (animal != null)
+                {
+                    animal.SetEnergyLoss(0.0f);
+                }
+            }*/
         }
         customTerrain.debug.text = "Number of animals: " + animals.Count.ToString();
 
@@ -58,7 +66,7 @@ public class GeneticAlgo : MonoBehaviour
     /// <summary>
     /// Method to place grass or other resource in the terrain.
     /// </summary>
-    public void updateResources()
+    /*public void updateResources()
     {
         Vector2 detail_sz = customTerrain.detailSize();
         int[,] details = customTerrain.getDetails();
@@ -71,7 +79,69 @@ public class GeneticAlgo : MonoBehaviour
             currentGrowth -= 1.0f;
         }
         customTerrain.saveDetails();
+    }*/
+    
+    public void updateResources()
+    {
+        Vector2 detail_sz = customTerrain.detailSize();
+        int[,] details = customTerrain.getDetails();
+        float spawnProbability;
+        currentGrowth += vegetationGrowthRate;
+        while (currentGrowth > 1.0f)
+        {
+            float x = UnityEngine.Random.value * width;  // Use terrain width
+            float y = UnityEngine.Random.value * height; // Use terrain height
+
+            // Get the terrain altitude at the selected coordinates
+            float terrainHeight = customTerrain.get(x, y);
+
+            // Calculate the grass spawn probability based on terrain height
+            if (terrainHeight == 0)
+            {
+                spawnProbability = 0.01f;
+            }
+            else
+            {
+                spawnProbability = CalculateSpawnProbability(terrainHeight);
+            }
+
+            float random = UnityEngine.Random.Range(0f,1f);
+            // Check if grass should be spawned at this coordinate
+            if (random < spawnProbability)
+            {
+                //customTerrain.debug.text = random.ToString();
+                // Map world coordinates back to detail map coordinates
+                int detailX = Mathf.FloorToInt(x / width * detail_sz.x);
+                int detailY = Mathf.FloorToInt(y / height * detail_sz.y);
+
+                details[detailY, detailX] = 1;
+                currentGrowth -= 1.0f;
+
+                // Visualize a debug ray at the spawned coordinate
+                Vector3 start = new Vector3(x, terrainHeight, y);
+                Vector3 end = start + Vector3.up * 10f; // Change the length here
+
+                // Change the thickness (width) of the debug line by specifying the color
+                Debug.DrawLine(start, end, Color.green, 10.0f); // Change the thickness here
+            }
+            else break;
+
+            customTerrain.saveDetails();
+        }
     }
+    
+    private float CalculateSpawnProbability(float terrainHeight)
+    {
+        // Adjust these parameters as needed
+        float minProbability = 0.01f; // Minimum probability
+        float maxProbability = 0.8f; // Maximum probability
+
+        // Example: Exponential relationship where probability increases exponentially with terrain height
+        float normalizedHeight = terrainHeight / 110.0f;
+        // Use an exponential function to increase the probability exponentially with terrain height
+        return minProbability + (maxProbability - minProbability) * Mathf.Pow(normalizedHeight, 2.0f);
+    }
+
 
     /// <summary>
     /// Method to instantiate an animal prefab. It must contain the animal.cs class attached.
@@ -84,13 +154,21 @@ public class GeneticAlgo : MonoBehaviour
         animal.GetComponent<Animal>().Setup(customTerrain, this);
         animal.transform.position = position;
         animal.transform.Rotate(0.0f, UnityEngine.Random.value * 360.0f, 0.0f);
-        
-        float randomScaleFactor = Random.Range(1.0f, 4.0f);
-        Vector3 newScale = new Vector3(randomScaleFactor, randomScaleFactor, randomScaleFactor);
-        animal.transform.localScale = newScale;
-        
         return animal;
     }
+    
+    /*public void setLoss(float loss)
+    {
+        foreach (GameObject animalInstance in animals)
+        {
+            Animal animalComponent = animalInstance.GetComponent<Animal>();
+            if (animalComponent != null)
+            {
+                animalComponent.SetEnergyLoss(loss);
+                customTerrain.debug.text += "Setting the animal energy loss!";
+            }
+        }
+    }*/
 
     /// <summary>
     /// If makeAnimal() is called without position, we randomize it on the terrain.
@@ -125,4 +203,5 @@ public class GeneticAlgo : MonoBehaviour
         animals.Remove(animal.transform.gameObject);
         Destroy(animal.transform.gameObject);
     }
+
 }

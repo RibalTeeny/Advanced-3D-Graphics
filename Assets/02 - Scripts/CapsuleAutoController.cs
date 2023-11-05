@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CapsuleAutoController : MonoBehaviour {
 
-    public float max_speed;
+    public float max_speed = 0.2f;
     protected Terrain terrain;
     protected CustomTerrain cterrain;
     protected float width, height;

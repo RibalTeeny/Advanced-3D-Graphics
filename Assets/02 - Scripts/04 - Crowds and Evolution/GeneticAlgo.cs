@@ -66,6 +66,7 @@ public class GeneticAlgo : MonoBehaviour
     /// <summary>
     /// Method to place grass or other resource in the terrain.
     /// </summary>
+    
     /*public void updateResources()
     {
         Vector2 detail_sz = customTerrain.detailSize();
@@ -81,6 +82,7 @@ public class GeneticAlgo : MonoBehaviour
         customTerrain.saveDetails();
     }*/
     
+    // Grass placement based on the terrain altitude
     public void updateResources()
     {
         Vector2 detail_sz = customTerrain.detailSize();
@@ -136,9 +138,8 @@ public class GeneticAlgo : MonoBehaviour
         float minProbability = 0.01f; // Minimum probability
         float maxProbability = 0.8f; // Maximum probability
 
-        // Example: Exponential relationship where probability increases exponentially with terrain height
         float normalizedHeight = terrainHeight / 110.0f;
-        // Use an exponential function to increase the probability exponentially with terrain height
+        // Exponential function to increase the probability
         return minProbability + (maxProbability - minProbability) * Mathf.Pow(normalizedHeight, 2.0f);
     }
 

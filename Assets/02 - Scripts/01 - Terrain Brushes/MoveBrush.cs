@@ -5,8 +5,7 @@ using UnityEngine;
 public class MoveBrush : TerrainBrush {
     private float[,] heightData; // Store the height data within the brush radius
     public bool isCaptured = false;
-
-    // Override the draw method to apply the stored height data
+    
     public override void draw(int x, int z)
     {
         if (isCaptured)

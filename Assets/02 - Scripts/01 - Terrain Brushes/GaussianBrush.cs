@@ -14,7 +14,7 @@ public class GaussianBrush : TerrainBrush {
                 float distance = Vector2.Distance(new Vector2(xi, zi), Vector2.zero);
                 float intensity = maxIntensity * GaussianDistribution(distance, standardDeviation);
                
-                float change = isIncrementing ? intensity : -intensity;
+                float change = isIncrementing ? intensity : -intensity; // Reverse intensity for decrement action
                 
                 float currentHeight = terrain.get(x + xi, z + zi);
                 terrain.set(x + xi, z + zi, currentHeight + change);
@@ -23,6 +23,6 @@ public class GaussianBrush : TerrainBrush {
     }
     
     private float GaussianDistribution(float x, float stdDev) {
-        return Mathf.Exp(-(x * x) / (2 * stdDev * stdDev)) / (stdDev * Mathf.Sqrt(2 * Mathf.PI));
+        return Mathf.Exp(-(x * x) / (2 * stdDev * stdDev)) / (stdDev * Mathf.Sqrt(2 * Mathf.PI)); // Gaussian
     }
 }

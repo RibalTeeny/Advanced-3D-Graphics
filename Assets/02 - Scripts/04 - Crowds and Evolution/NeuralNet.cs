@@ -111,21 +111,19 @@ public class SimpleNeuralNet
     // Mutation based on the parent's weights
     public void mutate()
     {
-        float pro = UnityEngine.Random.value; // mutate probability
-        float max = (2.0f * 1 - 1.0f) * 10.0f;
-        float min = (2.0f * 0 - 1.0f) * 10.0f;
+        float rand = UnityEngine.Random.value; // mutate probability
+
         foreach (float[,] weights in allWeights)
         {
             for (int i = 0; i < weights.GetLength(0); i++)
             {
                 for (int j = 0; j < weights.GetLength(1); j++)
                 {
-                    float rand = UnityEngine.Random.value;
-                    if (rand < pro)
+                    if ( UnityEngine.Random.value < rand)
                     {
-                        // just make a little bit change based on previous weights
+                        // Edit slightly already existing weights
                         weights[i, j] += UnityEngine.Random.Range(-1f, 1f);
-                        weights[i, j] = Mathf.Clamp(weights[i, j], min, max);
+                        weights[i, j] = Mathf.Clamp(weights[i, j], 10.0f, 10.0f);
                     }
                 }
             }

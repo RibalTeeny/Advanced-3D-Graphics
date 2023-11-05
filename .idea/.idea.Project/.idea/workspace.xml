@@ -7,13 +7,21 @@
     <list default="true" id="3c3ee1d0-6fc2-4a5d-9b63-7b3642af500a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00 - Scenes/Scene - 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00 - Scenes/Scene - 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/ErosionBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/ErosionBrush.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/GaussianBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/GaussianBrush.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/IncrementalBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/IncrementalBrush.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/MoveBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/MoveBrush.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/PerlinBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/PerlinBrush.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/RandomBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/RandomBrush.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/03 - Character Animation/01 - Quadruped with full IK/FootStepper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/03 - Character Animation/01 - Quadruped with full IK/FootStepper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/SmoothBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/01 - Terrain Brushes/SmoothBrush.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/02 - Instance Brushes/AltitudeInstanceBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/02 - Instance Brushes/AltitudeInstanceBrush.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/02 - Instance Brushes/ClusterInstanceBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/02 - Instance Brushes/ClusterInstanceBrush.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/02 - Instance Brushes/GridInstanceBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/02 - Instance Brushes/GridInstanceBrush.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/02 - Instance Brushes/RangeInstanceBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/02 - Instance Brushes/RangeInstanceBrush.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/02 - Instance Brushes/SteepInstanceBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/02 - Instance Brushes/SteepInstanceBrush.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/04 - Crowds and Evolution/Animal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/04 - Crowds and Evolution/Animal.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/04 - Crowds and Evolution/GeneticAlgo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/04 - Crowds and Evolution/GeneticAlgo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/04 - Crowds and Evolution/NeuralNet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/04 - Crowds and Evolution/NeuralNet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02 - Scripts/CapsuleAutoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02 - Scripts/CapsuleAutoController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/04 - Terrain Assets/Terrain Data/New Terrain.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/04 - Terrain Assets/Terrain Data/New Terrain.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,28 +55,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.build.unityPlugin",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.build.unityPlugin&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\andre\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\andre\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\andre\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\andre\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\andre\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\andre\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity 2021.3.8f1\Editor\Unity.exe" />
@@ -96,10 +104,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="15648">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="15648" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -128,7 +136,8 @@
       <workItem from="1698855354490" duration="12731000" />
       <workItem from="1699111333590" duration="650000" />
       <workItem from="1699183393942" duration="870000" />
-      <workItem from="1699184792359" duration="10662000" />
+      <workItem from="1699184792359" duration="11254000" />
+      <workItem from="1699210557007" duration="4812000" />
     </task>
     <servers />
   </component>

@@ -14,7 +14,7 @@ public class PerlinBrush : TerrainBrush {
     
     public override void draw(int x, int z) {
         //for (int zi = -radius; zi <= radius; zi++) {
-        //for (int xi = -radius; xi <= radius; xi++) {
+        //  for (int xi = -radius; xi <= radius; xi++) {
         float perlinValue;
         for (int zi = -customRadius; zi <= customRadius; zi++) {
             for (int xi = -customRadius; xi <= customRadius; xi++) {
@@ -22,13 +22,17 @@ public class PerlinBrush : TerrainBrush {
                 float perlinX = (x + xi) * scale;
                 float perlinZ = (z + zi) * scale;
                 
+                // Power function from a sum of three Perlin Noises generated with different parameters, the heightMultiplier is applied in the end
                 if (!terraceOn)
                 {
                     perlinValue = Mathf.Pow(((1 * Mathf.PerlinNoise(frequency * perlinX, frequency * perlinZ) +
                                                                 + 0.5f * Mathf.PerlinNoise(frequency*2 * perlinX, frequency*2 * perlinZ)
                                                                 + 0.25f * Mathf.PerlinNoise(frequency*4 * perlinX, frequency*4 * perlinZ))
                                                                * heightMultiplier) / (1.0f + 0.5f + 0.25f), powValue);
-                } else {
+                }
+                
+                // Step function created using Mathf.Round
+                else {
                     perlinValue = Mathf.Round(((1 * Mathf.PerlinNoise(frequency * perlinX, frequency * perlinZ) +
                                                             + 0.5f * Mathf.PerlinNoise(frequency*2 * perlinX, frequency*2 * perlinZ)
                                                             + 0.25f * Mathf.PerlinNoise(frequency*4 * perlinX, frequency*4 * perlinZ))

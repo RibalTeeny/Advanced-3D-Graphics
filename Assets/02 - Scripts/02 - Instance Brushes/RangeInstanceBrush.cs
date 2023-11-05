@@ -6,7 +6,6 @@ public class RangeInstanceBrush : InstanceBrush
 
     public override void draw(float x, float z)
     {
-        // Get the altitude of the terrain at the placement location
         float altitude = terrain.get(x, z);
 
         // Find the appropriate tree type based on altitude
@@ -18,8 +17,7 @@ public class RangeInstanceBrush : InstanceBrush
             // Set the prefab index and object_prefab to spawn the selected tree
             prefab_idx = treeTypeIndex;
             terrain.object_prefab = terrain.vegetation[prefab_idx];
-
-            // Spawn the tree at the specified location
+            
             spawnObject(x, z);
         }
     }

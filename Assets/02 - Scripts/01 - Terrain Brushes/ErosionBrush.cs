@@ -19,8 +19,7 @@ public class ErosionBrush : TerrainBrush
             float craterZ = Random.Range(z - radius, z + radius);
             float craterRadius = Random.Range(minCraterRadius, maxCraterRadius);
             float craterDepth = Random.Range(minDepth, maxDepth);
-
-            // Apply the crater effect to the terrain
+            
             createCrater(craterX, craterZ, craterRadius, craterDepth);
         }
 
@@ -36,7 +35,7 @@ public class ErosionBrush : TerrainBrush
                 float distance = Mathf.Sqrt((xi - x) * (xi - x) + (zi - z) * (zi - z));
                 if (distance <= craterRadius)
                 {
-                    float normalizedDepth = 1f - Mathf.Clamp01(distance / craterRadius); // Depth decreases with distance from the center
+                    float normalizedDepth = 1f - Mathf.Clamp01(distance / craterRadius); // Depth decreases with distance from the center to create "droplet" effect
                     float currentHeight = terrain.get(xi, zi);
                     float newHeight = currentHeight - depth * normalizedDepth;
 

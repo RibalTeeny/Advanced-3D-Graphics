@@ -140,6 +140,7 @@ public class Animal : MonoBehaviour
             Vector3 rayStart = tfm.position;
             Vector3 rayDirection = forwardAnimal.normalized * maxVision;
 
+            // Vision visualisation
             Debug.DrawRay(rayStart, rayDirection, Color.red);
 
             // Interate over vision length.

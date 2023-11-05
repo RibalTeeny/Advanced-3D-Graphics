@@ -15,7 +15,7 @@ public class SmoothBrush : TerrainBrush {
                 
                 Vector3 normal = terrain.getNormal(x, z);
 
-                // Check if the terrain is relatively flat (you can adjust the threshold)
+                // Check if the terrain is relatively flat
                 if (normal.y > flatnessThreshold) {
                     continue;
                 }
@@ -32,7 +32,7 @@ public class SmoothBrush : TerrainBrush {
 
                 // Smooth the height if there is a significant difference
                 if (Mathf.Abs(centerHeight - averageHeight) > 0.1f) {
-                    // Interpolation function
+                    // Interpolation
                     float smoothedHeight = Mathf.Lerp(centerHeight, averageHeight, smoothStrength);
                     terrain.set(x, z, smoothedHeight);
                 }

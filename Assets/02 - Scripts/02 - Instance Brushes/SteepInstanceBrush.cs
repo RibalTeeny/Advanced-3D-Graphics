@@ -11,10 +11,9 @@ public class SteepInstanceBrush : InstanceBrush {
         // Check if the terrain is too steep at the placement location
         if (terrainIsTooSteep(x, z))
         {
-            return; // Terrain is too steep, do not place the object
+            return;
         }
-
-        // If the terrain is not too steep, proceed with object placement
+        
         spawnObject(x, z);
     }
 

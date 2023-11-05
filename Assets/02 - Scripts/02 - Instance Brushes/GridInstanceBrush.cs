@@ -11,24 +11,10 @@ public class GridInstanceBrush : InstanceBrush
 
     public override void draw(float x, float z)
     {
-        if (gridStep == 0)
+        if (gridSize > 0)
         {
             gridStep = terrain.terrainSize().x / gridSize;
         }
-    /*
-        // Calculate the nearest grid point within the global grid
-        float roundedX = Mathf.Round(x / gridStep) * gridStep;
-        float roundedZ = Mathf.Round(z / gridStep) * gridStep;
-
-        float distance = Vector2.Distance(new Vector2(x, z), new Vector2(roundedX, roundedZ));
-        if (distance <= radius)
-        {
-            if (!objectExistsAtLocation(roundedX, roundedZ))
-            {
-                // Spawn an object at the rounded coordinates
-                spawnObject(roundedX, roundedZ);
-            }
-        }*/
     
         Vector2 rotatedCoords = RotateCoordinates(new Vector2(x, z), new Vector2(terrain.transform.position.x, terrain.transform.position.z), rotationAngle);
 
@@ -43,7 +29,6 @@ public class GridInstanceBrush : InstanceBrush
         {
             if (!objectExistsAtLocation(finalCoords.x, finalCoords.y))
             {
-                // Spawn an object at the rounded coordinates
                 spawnObject(finalCoords.x, finalCoords.y);
             }
         }
@@ -68,7 +53,6 @@ public class GridInstanceBrush : InstanceBrush
 
         return point;
     }
-
     
     private bool objectExistsAtLocation(float x, float z)
     {
@@ -82,10 +66,10 @@ public class GridInstanceBrush : InstanceBrush
             // Prevent overlap in a set distance
             if (distance < 1.0f)
             {
-                return true; // A tree already exists at this location
+                return true; // A tree already exists here
             }
         }
 
-        return false; // No tree found
+        return false;
     }
 }

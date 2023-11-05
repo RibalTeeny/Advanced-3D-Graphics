@@ -15,6 +15,7 @@ public class ClusterInstanceBrush : InstanceBrush
             //terrain.debug.text = " ";
             Vector3 clusterCenter = new Vector3(x, 0, z);
             
+            // Scroll through the vegetation array and pick random trees for spawning
             if (terrain.vegetation.Length > 0)
             {
                 for (int i = 0; i < numberOfTrees; i++)
@@ -33,6 +34,8 @@ public class ClusterInstanceBrush : InstanceBrush
                     
                     //terrain.debug.text += "\n" + "Tree Type: " + terrain.vegetation[randomTreeIndex].name + "\n";
                 }
+                
+                // Revert back to the last tree used
                 prefab_idx = latestIndex;
             }
             else

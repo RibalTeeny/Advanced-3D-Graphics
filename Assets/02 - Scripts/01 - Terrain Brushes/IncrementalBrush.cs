@@ -13,6 +13,7 @@ public class IncrementalBrush : TerrainBrush {
             for (int xi = -radius; xi <= radius; xi++) {
                 float distance = Mathf.Sqrt(xi * xi + zi * zi);
                 
+                // Checking if the point is within the circle of set radius
                 if (distance <= brushRadius) {
                     float currentHeight = terrain.get(x + xi, z + zi);
                     float change = isIncrementing ? growthRate : -growthRate;

@@ -800,6 +800,7 @@ GameObject:
   - component: {fileID: 374040454}
   - component: {fileID: 374040455}
   - component: {fileID: 374040456}
+  - component: {fileID: 374040459}
   - component: {fileID: 374040430}
   - component: {fileID: 374040441}
   - component: {fileID: 374040443}
@@ -811,6 +812,7 @@ GameObject:
   - component: {fileID: 374040447}
   - component: {fileID: 374040457}
   - component: {fileID: 374040440}
+  - component: {fileID: 374040458}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Ground
@@ -1141,6 +1143,32 @@ MonoBehaviour:
   terraceValue: 0.5
   customRadius: 50
   terraceOn: 0
+--- !u!114 &374040458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374040426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb9ed2683f5fbc48908112504f057b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSteepnessAngle: 30
+--- !u!114 &374040459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374040426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb9ed2683f5fbc48908112504f057b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSteepnessAngle: 30
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,7 +2476,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137751596}
-  m_LocalRotation: {x: 0.09467271, y: 0.4793379, z: -0.052104156, w: 0.870952}
+  m_LocalRotation: {x: 0.09467271, y: 0.4793379, z: -0.052104153, w: 0.870952}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2612,7 +2640,7 @@ PrefabInstance:
     - target: {fileID: 6733265590630552185, guid: b8a4860b06bc8b44fa2e523916edd3dd,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8a4860b06bc8b44fa2e523916edd3dd, type: 3}

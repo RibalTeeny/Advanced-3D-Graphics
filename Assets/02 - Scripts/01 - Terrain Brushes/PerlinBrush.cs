@@ -16,7 +16,7 @@ public class PerlinBrush : TerrainBrush {
                 float perlinValue = Mathf.PerlinNoise(perlinX, perlinZ) * heightMultiplier;
                 float currentHeight = terrain.get(x + xi, z + zi);
                 terrain.set(x + xi, z + zi, perlinValue);
-                terrain.debug.text = "PerlinValue: " + perlinValue;
+                // terrain.debug.text = "PerlinValue: " + perlinValue;
             }
         }
     }

@@ -55,7 +55,7 @@ public class FabricIK : MonoBehaviour
         // We also need the direction and rotation of each bone, along with the initial target rotation.
         startingBoneDirectionToNext = new Vector3[chainLength + 1];
         startingBoneRotation = new Quaternion[chainLength + 1];
-        startingTargetRotation = target.rotation;
+        // startingTargetRotation = target.rotation;
 
         // Initialize data.
         // We need to fill the arrays described above with the information for each bone.
@@ -90,13 +90,14 @@ public class FabricIK : MonoBehaviour
 
             if (i == bones.Length - 1)
             {
-                startingBoneDirectionToNext[i] = target.position - current.position;
+                startingBoneDirectionToNext[i] = (target.position - current.position).normalized;
             }
             else
             {
                 // START TODO ###################
 
-                bonesLength[i] = (bones[i + 1].position - current.position).magnitude;
+                bonesLength[i] = Vector3.Distance(bones[i].position, bones[i + 1].position);
+                // Debug.Log(bones[i].position.ToString());
                 completeLength += bonesLength[i];
 
                 // END TODO ###################
@@ -105,6 +106,7 @@ public class FabricIK : MonoBehaviour
             }
             current = current.parent;
         }
+        // Debug.Log(completeLength.ToString());
     }
 
     // LateUpdate is called after all Update functions have been called.
@@ -156,13 +158,13 @@ public class FabricIK : MonoBehaviour
          */
 
         // START TODO ###################
-        
-        if (completeLength < (target.position - bones[0].position).magnitude)
+        float distance = Vector3.Distance(bonesPositions[0], target.position);
+        if (completeLength < distance)
         {
             for (int i = 1; i < bones.Length; i++)
             {
-                //bonesPositions[i] = bonesPositions[i - 1] + startingBoneDirectionToNext[i - 1].normalized * bonesLength[i - 1];
-                bonesPositions[i] = bones[0].position + (target.position - bones[0].position).normalized * bonesLength[i - 1]; 
+                Vector3 direction_to_target = (target.position - bonesPositions[i - 1]).normalized;
+                bonesPositions[i] = bonesPositions[i - 1] + direction_to_target * bonesLength[i - 1];
             }
         }
         
@@ -206,8 +208,8 @@ public class FabricIK : MonoBehaviour
                     }
                     else
                     {
-                        Vector3 direction = bonesPositions[i] - bonesPositions[i + 1];
-                        bonesPositions[i] = bonesPositions[i + 1] + bonesLength[i] * direction.normalized;
+                        Vector3 direction_to_target = (target.position - bonesPositions[i]).normalized;
+                        bonesPositions[i] = bonesPositions[i + 1] - direction_to_target * bonesLength[i];
                     }
                     
                     // END TODO ###################
@@ -221,9 +223,9 @@ public class FabricIK : MonoBehaviour
                      */
 
                     // START TODO ###################
-                    
-                    Vector3 direction = bonesPositions[i] - bonesPositions[i - 1];
-                    bonesPositions[i] = bonesPositions[i - 1] + bonesLength[i] * direction.normalized;
+
+                    Vector3 direction = (bonesPositions[0] - bonesPositions[i]).normalized;
+                    bonesPositions[i] = bonesPositions[i - 1] - direction * bonesLength[i - 1];
                     
                     // END TODO ###################
 

@@ -20,6 +20,7 @@ public class QuadrupedProceduralMotion : MonoBehaviour
     public float maxDistToGoal;
     SmoothDamp.Vector3 currentVelocity;
     SmoothDamp.Float currentAngularVelocity;
+    public bool useraytracing = true;
 
     // Settings relative to body adaptation to the terrain.
     [Header("Body Adaptation Settings")]
@@ -62,11 +63,40 @@ public class QuadrupedProceduralMotion : MonoBehaviour
         StartCoroutine(Gait());
         TailInitialize();
         BodyInitialize();
+
+        Transform[] ts = hips.parent.transform.GetComponentsInChildren<Transform>();
+        foreach (Transform t in ts)
+        {
+            // print("t.gameObject.name: "+t.gameObject.name);
+            if (t.gameObject.name == "goal")
+            {
+                // print("found goal (inside) in children !!");
+                //set the position of the goal
+                //now we need to unparent it to avoid problems 
+                goal = t;
+                // only take the transform
+                goal = goal.transform;
+                goal.parent = null;
+            }
+        }
     }
 
     // Update is called every frame, if the MonoBehaviour is enabled.
     private void Update()
-    {        
+    {
+        Transform[] ts = hips.parent.transform.GetComponentsInChildren<Transform>();
+        foreach (Transform t in ts)
+        {
+            // print("t.gameObject.name: "+t.gameObject.name);
+            if (t.gameObject.name == "goal")
+            {
+                // print("found goal (inside) in children !!");
+                //set the position of the goal
+                //now we need to unparent it to avoid problems 
+                goal = t;
+                goal.parent = null;
+            }
+        }
         RootMotion();
     }
 
@@ -170,9 +200,13 @@ public class QuadrupedProceduralMotion : MonoBehaviour
          */
 
         // START TODO ###################
+        float hips_offset = 1.0f;
 
-        // hips.position = ...
-        // hips.rotation = ...
+        if (useraytracing == true)
+        {
+            hips.position = new Vector3(hips.position.x, posHit.y + hips_offset, hips.position.z);
+        }
+        hips.rotation = Quaternion.Lerp(hips.rotation, Quaternion.FromToRotation(hips.up, normalTerrain) * hips.rotation, heightAcceleration * Time.deltaTime);
 
         // END TODO ###################
     }
@@ -225,18 +259,18 @@ public class QuadrupedProceduralMotion : MonoBehaviour
         headBone.localRotation = Quaternion.identity;
 
         /* 
-         * First, we need to get goalWorldLookDir: the position of the goal with respect to the head transform (you can use Debug.DrawRay() to debug it).
-         * Use InverseTransformDirection() and headbone.parent to transform it with respect to the parent of the head (goalLocalLookDir).
-         * Use RotateTowards() to have Vector3.forward always looking to goalLocalLookDir.
-         * Finally, define targetLocalRotation: The target local angle for your head. The forward axis (along the bone) will need to point to the object. To do this, you can use Quaternion.LookRotation().
-         */
+        * First, we need to get goalWorldLookDir: the position of the goal with respect to the head transform (you can use Debug.DrawRay() to debug it).
+        * Use InverseTransformDirection() and headbone.parent to transform it with respect to the parent of the head (goalLocalLookDir).
+        * Use RotateTowards() to have Vector3.forward always looking to goalLocalLookDir.
+        * Finally, define targetLocalRotation: The target local angle for your head. The forward axis (along the bone) will need to point to the object. To do this, you can use Quaternion.LookRotation().
+        */
 
         // START TODO ###################
 
-        // goalWorldLookDir = ...
-        // goalLocalLookDir = ...
-
-        Quaternion targetLocalRotation = Quaternion.identity; // Change!
+        goalWorldLookDir = goal.position - headBone.position;
+        goalLocalLookDir = headBone.parent.InverseTransformDirection(goalWorldLookDir);
+        Vector3 forward = Vector3.RotateTowards(Vector3.forward, goalLocalLookDir, 1.0f, 0.0f);
+        Quaternion targetLocalRotation = Quaternion.LookRotation(forward, Vector3.up);
 
         // END TODO ###################
 
